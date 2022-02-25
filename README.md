@@ -29,9 +29,9 @@ This entirely assumes you use [systemd](https://systemd.io) as your init daemon,
 
 * Install cpupower, [msr-tools](https://github.com/intel/msr-tools), and [xpub](https://github.com/Ventto/xpub). xpub will allow our script to send notifications to our X session.
 * Include `msr` in your `initrd`'s `MODULES` (in `/etc/mkinitcpio.conf` for mkinitcpio).
-* Tweak `capacity` and `charger` in [](battery-check.py) to match your laptop's battery and AC jack. You can also tweak the threshold for each notification, and eventual hibernation.
-* Edit the path to [](battery-check.py) in the [](battery-check.service) unit file.
-* Edit the path to [](turboctl.sh) in both udev rules in [](rules.d/).
+* Tweak `capacity` and `charger` in [`battery-check.py`](battery-check.py) to match your laptop's battery and AC jack. You can also tweak the threshold for each notification, and eventual hibernation.
+* Edit the path to [`battery-check.py`](battery-check.py) in the [`battery-check.service`](battery-check.service) unit file.
+* Edit the path to [`turboctl.sh`](turboctl.sh) in both udev rules in [`rules.d/`](rules.d/).
 * Copy `battery-check.service` to `/etc/systemd/system`.
 * Enable and start `battery-check.service`.
 * Restart your system to fully initialize the new udev rules.
