@@ -1,0 +1,15 @@
+SUBSYSTEM=="power_supply", ACTION=="change", \
+ENV{POWER_SUPPLY_ONLINE}=="1", ENV{POWER}="on", \
+OPTIONS+="last_rule", \
+IMPORT{program}="/usr/bin/xpub", \
+RUN+="/bin/su $env{XUSER} -c 'notify-send -u low -i battery-full-charging -a \"Battery status\" \"Charger status\" \"Charging cable has been plugged in.\"'"
+
+SUBSYSTEM=="power_supply", ACTION=="change", \
+ENV{POWER_SUPPLY_ONLINE}=="1", ENV{POWER}="on", \
+OPTIONS+="last_rule", \
+RUN+="/usr/bin/cpupower frequency-set -g performance"
+
+SUBSYSTEM=="power_supply", ACTION=="change", \
+ENV{POWER_SUPPLY_ONLINE}=="1", ENV{POWER}="on", \
+OPTIONS+="last_rule", \
+RUN+="/usr/local/bin/intelturbo.sh enable"

@@ -1,0 +1,15 @@
+SUBSYSTEM=="power_supply", ACTION=="change", \
+ENV{POWER_SUPPLY_ONLINE}=="0", ENV{POWER}="off", \
+OPTIONS+="last_rule", \
+IMPORT{program}="/usr/bin/xpub", \
+RUN+="/bin/su $env{XUSER} -c 'notify-send -u low -i battery-missing -a \"Battery status\" \"Charger status\" \"Charging cable has been unplugged.\"'"
+
+SUBSYSTEM=="power_supply", ACTION=="change", \
+ENV{POWER_SUPPLY_ONLINE}=="0", ENV{POWER}="off", \
+OPTIONS+="last_rule", \
+RUN+="/usr/bin/cpupower frequency-set -g powersave"
+
+SUBSYSTEM=="power_supply", ACTION=="change", \
+ENV{POWER_SUPPLY_ONLINE}=="0", ENV{POWER}="off", \
+OPTIONS+="last_rule", \
+RUN+="/usr/bin/bash /usr/local/bin/intelturbo.sh disable"
