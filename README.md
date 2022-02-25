@@ -6,6 +6,8 @@ I have an Acer Nitro 5 (AN515-53) running Arch Linux:
 ![](https://files.catbox.moe/teqbc3.png)
 
 Having not opted to use any proper desktop environment, having some form of battery notification and power saving mechanism would have been great!
+
+**If there is any better way to do this, please tell me!!!**
 ## The sadness
 
 There's a script that utilizes notify-send to send notifications about your batteries state: [batify](https://github.com/Ventto/batify)
