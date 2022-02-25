@@ -26,7 +26,7 @@ caution = False
 
 try:
     while True:
-        sleep(1)
+        sleep(15)
         fhca.seek(0) # Seek to position 0
         fhch.seek(0) # !!
         status = int(fhca.read().strip()) # Read percentage of battery and convert to integer
