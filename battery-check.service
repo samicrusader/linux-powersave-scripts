@@ -1,11 +1,7 @@
 [Unit]
-Description=Battery notification service
-After=network.target
+Description=Battery notification service                                   
 
 [Service]
 Type=simple
 ExecStart=/usr/bin/python3 /usr/local/bin/battery-check
-Restart=on-failure
-
-[Install]
-WantedBy=network-online.target
+Restart=always
