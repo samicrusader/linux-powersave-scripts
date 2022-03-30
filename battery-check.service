@@ -1,7 +1,10 @@
 [Unit]
-Description=Battery notification service                                   
+Description=Battery check service
 
 [Service]
 Type=simple
 ExecStart=/usr/bin/python3 /usr/local/bin/battery-check
 Restart=always
+
+[Install]
+WantedBy=multi-user.target
