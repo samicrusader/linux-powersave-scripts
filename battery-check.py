@@ -16,7 +16,11 @@ def sendNotify(icon, title, text):
         z = env.split('=')
         environ.update({z[0]: z[1]})
     text = text.replace('\'', '\\\'')
-    subprocess.check_output(f'{xpub.replace(nl, " ")} su {environ["XUSER"]} -c $\'/usr/bin/notify-send -u critical -i {icon} -a "Battery status" "{title}" "{text}"\'', shell=True)
+    try:
+        subprocess.check_output(f'{xpub.replace(nl, " ")} su {environ["XUSER"]} -c $\'/usr/bin/notify-send -u critical -i {icon} -a "Battery status" "{title}" "{text}"\'', shell=True)
+    except:
+        syslog.syslog(syslog.ERR, f'Battery status: {title} / {text}')
+        subprocess.check_output(['wall', f'Battery status: {title} / {text}'])
     print('sent', text)
     return True
 
