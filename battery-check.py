@@ -38,7 +38,7 @@ try:
         nl = '\n'
         if not connected: # If charger isn't connected:
             print('we aren\'t connected')
-            if status <= 3: # If battery is at or below 3%,
+            if status <= 2: # If battery is at or below 3%,
                 dead = False
                 critical = False
                 caution = False
@@ -46,24 +46,24 @@ try:
                     subprocess.check_output(['/usr/bin/systemctl', 'hibernate']) # Hibernate the system immediately.
                 except:
                     pass
-            elif status <= 5: # If battery is at or below 5%, 
+            elif status <= 4: # If battery is at or below 5%, 
                 if not dead: # and the dead notification hasn't already fired off:
-                    if status >= 4: # and battery is above 4%, 
+                    if status >= 3: # and battery is above 4%, 
                         sendNotify('battery-missing', f'Battery is at {status}%', 'This laptop will hibernate shortly. Charge your laptop now.') # Send notification to user
                         dead = True
                         critical = False
                         caution = False
-            elif status <= 9:
+            elif status <= 8:
                 if not critical:
-                    if status >= 6:
+                    if status >= 5:
                         print('send')
                         sendNotify('battery-empty', f'Battery is at {status}%', 'This laptop\'s battery is very low. Please charge your laptop soon.')
                         dead = False
                         critical = True
                         caution = False
-            elif status <= 15:
+            elif status <= 14:
                 if not caution:
-                    if status >= 10:
+                    if status >= 9:
                         sendNotify('battery-caution', f'Battery is at {status}%', 'This laptop\'s battery is low. Consider plugging your laptop to a charger.')
                         dead = False
                         critical = False
